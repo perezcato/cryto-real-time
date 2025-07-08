@@ -4,7 +4,7 @@ import { AssetResponse } from "./types";
 
 dotenv.config();
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const COINMETRICS_API_URL =
   "wss://api.coinmetrics.io/v4/timeseries-stream/asset-metrics";
 const ASSETS = ["btc", "eth", "usdt"];
