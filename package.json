@@ -2,7 +2,8 @@
   "name": "crypto-assignment",
   "version": "1.0.0",
   "scripts": {
-    "server": "tsc && node dist/server.js"
+    "build:server": "pnpm install --filter server && pnpm run --filter server build",
+    "start:server": "pnpm run build:server && pnpm run --filter server start"
   },
   "keywords": [],
   "author": "",
