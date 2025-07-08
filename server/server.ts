@@ -21,7 +21,7 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-const wss = new WebSocket.Server({ port: PORT });
+const wss = new WebSocket.Server({ port: PORT as number });
 console.log(`✅ WebSocket server started`);
 
 wss.on("connection", (ws: WebSocket) => {
