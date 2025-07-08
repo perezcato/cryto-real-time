@@ -25,7 +25,7 @@ const connectToBinance = () => {
   const binanceSocket = new WebSocket(streamUrl);
 
   binanceSocket.on("open", () => {
-    console.log("✅ Successfully connected to CoinMetrics API.");
+    console.log("✅ Successfully connected to Binance API.");
     console.log(`Subscribed to prices for ${ASSETS.join(", ")}.`);
   });
 
@@ -33,13 +33,13 @@ const connectToBinance = () => {
     try {
       handleMessage(data);
     } catch (error) {
-      console.error("Error processing message from CoinMetrics:", error);
+      console.error("Error processing message from Binance:", error);
     }
   });
 
   binanceSocket.on("close", () => {
     console.log(
-      `CoinMetrics connection closed. Reconnecting in ${
+      `Binance connection closed. Reconnecting in ${
         RECONNECT_DELAY / 1000
       } seconds...`
     );
