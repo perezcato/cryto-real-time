@@ -1,4 +1,5 @@
-import { AssetData } from "./types";
+import { AssetData } from "@/types";
+
 
 export const initialAssetData: AssetData = {
   btc: {
