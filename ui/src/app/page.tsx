@@ -59,9 +59,6 @@ export default function Home() {
             <h1 className="text-4xl font-bold text-white">
               Crypto Price Tracker
             </h1>
-            <p className="text-gray-400">
-              Live prices from CoinMetrics WebSocket API
-            </p>
           </div>
           <StatusIndicator status={status} />
         </header>
