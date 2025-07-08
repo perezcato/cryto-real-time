@@ -2,10 +2,15 @@
   "name": "crypto-assignment",
   "version": "1.0.0",
   "scripts": {
+    "install": "pnpm install --filter server && pnpm install --filter ui",
+    "build": "pnpm run build:server && pnpm run build:ui",
     "build:server": "pnpm install --filter server && pnpm run --filter server build",
     "start:server": "pnpm run --filter server start",
     "start:ui": "pnpm run --filter ui start",
-    "build:ui": "pnpm install --filter server &&pnpm run --filter ui build"
+    "build:ui": "pnpm run --filter ui build",
+    "start": "pnpm run start:server & pnpm run start:ui",
+    "dev": "pnpm run --filter ui dev & pnpm run --filter server dev",
+    "build-and-start": "pnpm run build && pnpm run start"
   },
   "keywords": [],
   "author": "",
