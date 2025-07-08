@@ -1,0 +1,14 @@
+{
+  "name": "crypto-assignment",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "tsc && node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
