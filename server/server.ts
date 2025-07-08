@@ -59,11 +59,8 @@ const handleMessage = (data: WebSocket.Data) => {
       return;
   }
   const validatedData = validationResult.data;
-  if (validatedData.e !== "24hrTicker" || !message.s) {
-    return;
-  }
-
   const asset = validatedData.s.replace("USDT", "").toLowerCase();
+
   if (!ASSETS.includes(asset)) {
     return;
   }
