@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "build:server": "pnpm install --filter server && pnpm run --filter server build",
-    "start:server": "pnpm run --filter server start"
+    "start:server": "pnpm run --filter server start",
+    "start:ui": "pnpm run --filter ui start",
+    "build:ui": "pnpm install --filter server &&pnpm run --filter ui build"
   },
   "keywords": [],
   "author": "",

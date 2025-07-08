@@ -48,7 +48,7 @@ export default function Home() {
 
   const status = usePriceWebSocket({
     onMessage: handleMessage,
-    url: "ws://localhost:8080",
+    url: process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8080",
   });
 
   return (
