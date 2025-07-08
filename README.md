@@ -1,93 +1,129 @@
 # Crypto Price Tracker
 
-A full-stack application that displays real-time cryptocurrency prices (BTC, ETH, USDT) using data streamed from the CoinMetrics WebSocket API. The backend Node.js server relays this data to a modern Next.js/React frontend.
+Track live prices for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) in real time. This project streams data from the CoinMetrics and Binance WebSocket APIs through a Node.js backend to a sleek Next.js/React frontend.
 
-## Features
-- **Live Price Updates:** Real-time price tracking for Bitcoin, Ethereum, and Tether.
-- **WebSocket Architecture:** Efficient, low-latency updates using WebSockets end-to-end.
-- **Modern UI:** Responsive, dark-themed interface built with Next.js, React, and Tailwind CSS.
-- **Status Indicator:** Visual feedback for WebSocket connection status.
+---
 
-## Architecture
+## 🚀 Features
+
+- **Live Crypto Prices:** Instant updates for BTC, ETH, and SOL.
+- **WebSocket Streaming:** End-to-end real-time data flow from CoinMetrics and Binance.
+- **Modern UI:** Responsive, dark-mode interface with Tailwind CSS.
+- **Connection Status:** Visual indicator for WebSocket connectivity.
+
+---
+
+## 🏗️ Architecture
+
 ```
-CoinMetrics API
-      |
-      v
-[ Node.js WebSocket Server ]
-      |
-      v
-[ Next.js/React Frontend ]
+CoinMetrics API   Binance API
+      │              │
+      └──────┬───────┘
+             ▼
+   [ Node.js WebSocket Server ]
+             │
+             ▼
+   [ Next.js/React Frontend ]
 ```
 
-- The backend connects to the CoinMetrics API and relays price updates to all connected frontend clients via WebSocket.
+- The backend relays price updates from CoinMetrics and Binance to all connected clients.
 - The frontend displays live prices, price changes, and connection status.
 
-## Monorepo Structure
+---
+
+## 🗂️ Monorepo Structure
+
 - `server/` — Node.js WebSocket relay server (TypeScript)
 - `ui/` — Next.js/React frontend (TypeScript, Tailwind CSS)
 
-## Getting Started
+---
+
+## ⚡ Quick Start
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v18+ recommended)
-- [pnpm](https://pnpm.io/) (install globally with `npm i -g pnpm`)
+
+- [Node.js](https://nodejs.org/) (v18+)
+- [pnpm](https://pnpm.io/) (`npm i -g pnpm`)
 
 ### 1. Install Dependencies
-```
+
+```sh
 pnpm install
 ```
 
-### 2. Set Up Environment Variables
-Create a `.env` file in the `server/` directory with your [CoinMetrics API key](https://docs.coinmetrics.io/api/v4#section/Authentication):
+### 2. Configure Environment
+
+Create `server/.env`:
 
 ```
 COINMETRICS_API_KEY=your_coinmetrics_api_key_here
-PORT=8080 # (optional, default: 8080)
+PORT=8080 # optional, default: 8080
+# Add any Binance-specific environment variables here if needed
 ```
 
-### 3. Build the Project
-```
+### 3. Build All
+
+```sh
 pnpm run build
 ```
 
-### 4. Start the Application
-```
+### 4. Start Everything
+
+```sh
 pnpm run start
 ```
-This will start both the server and the UI concurrently.
 
-- The backend WebSocket server runs on `ws://localhost:8080` (by default).
-- The frontend UI runs on `http://localhost:3000`.
+- Backend: `ws://localhost:8080`
+- Frontend: `http://localhost:3000`
 
 ### 5. Development Mode
-For hot-reloading in both server and UI:
-```
+
+For hot-reloading:
+
+```sh
 pnpm run dev
 ```
 
-## Usage
-- Open [http://localhost:3000](http://localhost:3000) in your browser.
-- You will see live price cards for BTC, ETH, and USDT.
-- The colored dot in the header shows the WebSocket connection status.
+---
 
-## Scripts
+## 🖥️ Usage
+
+- Open [http://localhost:3000](http://localhost:3000)
+- Watch live price cards for BTC, ETH, and SOL.
+- The colored dot in the header shows WebSocket status.
+
+---
+
+## 📜 Scripts
+
 - `pnpm run build` — Build both server and UI
 - `pnpm run start` — Start both server and UI
 - `pnpm run dev` — Start both in development mode (hot reload)
 
-## Tech Stack
+---
+
+## 🛠️ Tech Stack
+
 - **Backend:** Node.js, TypeScript, ws, dotenv
 - **Frontend:** Next.js, React, Tailwind CSS
 - **Monorepo:** pnpm workspaces
+- **Data Sources:** CoinMetrics WebSocket API, Binance WebSocket API
 
-## Environment Variables
-- `COINMETRICS_API_KEY` (required, in `server/.env`): Your CoinMetrics API key
-- `PORT` (optional, in `server/.env`): Port for the backend WebSocket server (default: 8080)
-- `NEXT_PUBLIC_WS_URL` (optional, in `ui/.env`): WebSocket URL for the frontend (default: ws://localhost:8080)
+---
 
-## License
+## 🔑 Environment Variables
+
+- `COINMETRICS_API_KEY` (required, in `server/.env`)
+- `PORT` (optional, in `server/.env`, default: 8080)
+- `NEXT_PUBLIC_WS_URL` (optional, in `ui/.env`, default: ws://localhost:8080)
+- (Add any Binance-specific variables if required)
+
+---
+
+## 📄 License
+
 ISC
 
 ---
 
-*Built for educational/demo purposes. Not for production trading use.* 
+*This project is for educational/demo purposes only. Not for production trading use.* 

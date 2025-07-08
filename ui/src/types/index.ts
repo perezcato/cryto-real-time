@@ -1,4 +1,4 @@
-export type Asset = "btc" | "eth" | "usdt";
+export type Asset = "btc" | "eth" | "sol";
 
 export type AssetData = {
   [key in Asset]: {

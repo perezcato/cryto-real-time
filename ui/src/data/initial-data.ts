@@ -16,8 +16,8 @@ export const initialAssetData: AssetData = {
     change: 0,
     direction: "none",
   },
-  usdt: {
-    name: "Tether",
+  sol: {
+    name: "Solana",
     price: 0,
     prevPrice: 0,
     change: 0,
