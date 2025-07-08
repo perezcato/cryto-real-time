@@ -47,7 +47,7 @@ const connectToBinance = () => {
   });
 
   binanceSocket.on("error", (error) => {
-    console.error("CoinMetrics WebSocket error:", error.message);
+    console.error("Binance WebSocket error:", error.message);
     binanceSocket.close();
   });
 };
@@ -67,7 +67,7 @@ const handleMessage = (data: WebSocket.Data) => {
 
   latestPrices[asset] = {
     asset: asset,
-    price: parseFloat(validatedData.c).toFixed(2),
+    price: parseFloat(validatedData.c),
     time: new Date(validatedData.E).toISOString(),
 };
 };

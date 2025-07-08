@@ -26,6 +26,6 @@ export type AssetResponse = {
 
 export type SimplifiedData = {
     asset: string,
-    price: string,
+    price: number,
     time: string
 }
