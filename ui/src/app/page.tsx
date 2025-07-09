@@ -7,9 +7,13 @@ import { usePriceWebSocket } from "@/hooks/usePriceWebsocket.hook";
 import { StatusIndicator } from "@/components/statusIndicator";
 import { CryptoCard } from "@/components/cryptoCard";
 
+// Main application component for real-time cryptocurrency price tracking
 export default function Home() {
+  // State to store current prices and price change data for all tracked assets
   const [prices, setPrices] = useState<AssetData>(initialAssetData);
 
+  // Callback to process incoming WebSocket price updates
+  // Calculates price changes and determines price direction for UI feedback
   const handleMessage = useCallback((data: AssetResponse) => {
     if (data.asset && prices.hasOwnProperty(data.asset)) {
       setPrices((prevPrices) => {
@@ -17,14 +21,17 @@ export default function Home() {
         const assetData = prevPrices[assetKey];
         const newPrice = data.price;
 
+        // Use previous price as baseline, or current price if first update
         const baselinePrice =
           assetData.prevPrice === 0 ? newPrice : assetData.prevPrice;
 
+        // Calculate percentage change from baseline
         const change =
           baselinePrice === 0
             ? 0
             : ((newPrice - baselinePrice) / baselinePrice) * 100;
 
+        // Determine price direction for visual feedback (up/down/stable)
         const direction =
           newPrice > assetData.price
             ? "up"
@@ -46,6 +53,7 @@ export default function Home() {
     }
   }, []);
 
+  // Connect to WebSocket server for real-time price updates
   const status = usePriceWebSocket({
     onMessage: handleMessage,
     url: process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8080",
@@ -63,6 +71,7 @@ export default function Home() {
           <StatusIndicator status={status} />
         </header>
 
+        {/* Grid layout for cryptocurrency price cards */}
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Object.entries(prices).map(([key, value]) => (
             <CryptoCard key={key} name={value.name} data={value} />
