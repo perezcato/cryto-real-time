@@ -1,5 +1,7 @@
 import { AssetResponse } from "@/types";
+import { BinanceTickerSchemaUI } from "@/validation/validation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { z } from 'zod'
 
 interface UsePriceWebSocketOptions {
   onMessage: (data: AssetResponse) => void;
@@ -31,7 +33,14 @@ export const usePriceWebSocket = ({ onMessage, url }: UsePriceWebSocketOptions) 
     ws.current.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data) as AssetResponse;
-        onMessage(data);
+        const validationResult = BinanceTickerSchemaUI.safeParse(data);
+
+        if (!validationResult.success) {
+          return;
+        }
+
+        const validatedData = validationResult.data;
+        onMessage(validatedData as AssetResponse);
       } catch (error) {
         console.error("Failed to parse WebSocket message:", error);
       }
